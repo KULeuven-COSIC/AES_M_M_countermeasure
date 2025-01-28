@@ -1,0 +1,143 @@
+//Peralta Circuit: http://www.cs.yale.edu/homes/peralta/CircuitStuff/slp_84310.t&t
+//slp_84310.t&t : Multiplication circuit for GF(256) with irreducible polynomial &^8 ^ &^4 ^ &^3 ^ & ^ 1.
+//Date: July 2010.
+//input polynomials are A0 ^ A1*& ^ A2*&^2 ^ ... ^ A7*&^7 and B0 ^ B1*& ^ B2*&^2^ ... ^ B7*&^7
+//output polynomial is  C0 ^ C1*& ^ C2*&^2 ^ ... ^ C7*&^7.
+//Size : 117
+//Depth : 6
+
+ module mult_GF2_8 (A,B,C) ;
+    input [7:0] A;
+    input [7:0] B;
+    output [7:0] C;
+
+    wire [117:1] T;
+    
+    assign T[1  ] = A[0  ] & B[0];
+	assign T[2  ] = A[0  ] & B[1];
+	assign T[3  ] = A[1  ] & B[0];
+	assign T[4  ] = A[0  ] & B[2];
+	assign T[5  ] = A[1  ] & B[1];
+	assign T[6  ] = A[2  ] & B[0];
+	assign T[7  ] = A[0  ] & B[3];
+	assign T[8  ] = A[1  ] & B[2];
+	assign T[9  ] = A[2  ] & B[1];
+	assign T[10 ] = A[3  ] & B[0];
+	assign T[11 ] = A[1  ] & B[3];
+	assign T[12 ] = A[2  ] & B[2];
+	assign T[13 ] = A[3  ] & B[1];
+	assign T[14 ] = A[2  ] & B[3];
+	assign T[15 ] = A[3  ] & B[2];
+	assign T[16 ] = A[3  ] & B[3];
+	assign T[17 ] = A[4  ] & B[4];
+	assign T[18 ] = A[4  ] & B[5];
+	assign T[19 ] = A[5  ] & B[4];
+	assign T[20 ] = A[4  ] & B[6];
+	assign T[21 ] = A[5  ] & B[5];
+	assign T[22 ] = A[6  ] & B[4];
+	assign T[23 ] = A[4  ] & B[7];
+	assign T[24 ] = A[5  ] & B[6];
+	assign T[25 ] = A[6  ] & B[5];
+	assign T[26 ] = A[7  ] & B[4];
+	assign T[27 ] = A[5  ] & B[7];
+	assign T[28 ] = A[6  ] & B[6];
+	assign T[29 ] = A[7  ] & B[5];
+	assign T[30 ] = A[6  ] & B[7];
+	assign T[31 ] = A[7  ] & B[6];
+	assign T[32 ] = A[7  ] & B[7];
+	assign T[33 ] = A[0  ] ^ A[4];
+	assign T[34 ] = A[1  ] ^ A[5];
+	assign T[35 ] = A[2  ] ^ A[6];
+	assign T[36 ] = A[3  ] ^ A[7];
+	assign T[37 ] = B[0  ] ^ B[4];
+	assign T[38 ] = B[1  ] ^ B[5];
+	assign T[39 ] = B[2  ] ^ B[6];
+	assign T[40 ] = B[3  ] ^ B[7];
+	assign T[41 ] = T[40 ] & T[36];
+	assign T[42 ] = T[40 ] & T[35];
+	assign T[43 ] = T[40 ] & T[34];
+	assign T[44 ] = T[40 ] & T[33];
+	assign T[45 ] = T[39 ] & T[36];
+	assign T[46 ] = T[39 ] & T[35];
+	assign T[47 ] = T[39 ] & T[34];
+	assign T[48 ] = T[39 ] & T[33];
+	assign T[49 ] = T[38 ] & T[36];
+	assign T[50 ] = T[38 ] & T[35];
+	assign T[51 ] = T[38 ] & T[34];
+	assign T[52 ] = T[38 ] & T[33];
+	assign T[53 ] = T[37 ] & T[36];
+	assign T[54 ] = T[37 ] & T[35];
+	assign T[55 ] = T[37 ] & T[34];
+	assign T[56 ] = T[37 ] & T[33];
+	assign T[57 ] = T[2  ] ^ T[3];
+	assign T[58 ] = T[4  ] ^ T[5];
+	assign T[59 ] = T[6  ] ^ T[32];
+	assign T[60 ] = T[7  ] ^ T[8];
+	assign T[61 ] = T[9  ] ^ T[10];
+	assign T[62 ] = T[60 ] ^ T[61];
+	assign T[63 ] = T[11 ] ^ T[12];
+	assign T[64 ] = T[13 ] ^ T[63];
+	assign T[65 ] = T[14 ] ^ T[15];
+	assign T[66 ] = T[18 ] ^ T[19];
+	assign T[67 ] = T[20 ] ^ T[21];
+	assign T[68 ] = T[22 ] ^ T[67];
+	assign T[69 ] = T[23 ] ^ T[24];
+	assign T[70 ] = T[25 ] ^ T[26];
+	assign T[71 ] = T[69 ] ^ T[70];
+	assign T[72 ] = T[27 ] ^ T[28];
+	assign T[73 ] = T[29 ] ^ T[32];
+	assign T[74 ] = T[30 ] ^ T[31];
+	assign T[75 ] = T[52 ] ^ T[55];
+	assign T[76 ] = T[48 ] ^ T[51];
+	assign T[77 ] = T[54 ] ^ T[76];
+	assign T[78 ] = T[44 ] ^ T[47];
+	assign T[79 ] = T[50 ] ^ T[53];
+	assign T[80 ] = T[78 ] ^ T[79];
+	assign T[81 ] = T[43 ] ^ T[46];
+	assign T[82 ] = T[49 ] ^ T[81];
+	assign T[83 ] = T[42 ] ^ T[45];
+	assign T[84 ] = T[71 ] ^ T[74];
+	assign T[85 ] = T[41 ] ^ T[16];
+	assign T[86 ] = T[85 ] ^ T[68];
+	assign T[87 ] = T[66 ] ^ T[65];
+	assign T[88 ] = T[83 ] ^ T[87];
+	assign T[89 ] = T[58 ] ^ T[59];
+	assign T[90 ] = T[72 ] ^ T[73];
+	assign T[91 ] = T[74 ] ^ T[17];
+	assign T[92 ] = T[64 ] ^ T[91];
+	assign T[93 ] = T[82 ] ^ T[92];
+	assign T[94 ] = T[80 ] ^ T[62];
+	assign T[95 ] = T[94 ] ^ T[90];
+	assign C[7  ] = T[95 ];
+	assign T[96 ] = T[41 ] ^ T[77];
+	assign T[97 ] = T[84 ] ^ T[89];
+	assign T[98 ] = T[96 ] ^ T[97];
+	assign C[6  ] = T[98];
+	assign T[99 ] = T[57 ] ^ T[74];
+	assign T[100] = T[83 ] ^ T[75];
+	assign T[101] = T[86 ] ^ T[90];
+	assign T[102] = T[99 ] ^ T[100];
+	assign T[103] = T[101] ^ T[102];
+	assign C[5  ] = T[103];
+	assign T[104] = T[1  ] ^ T[56];
+	assign T[105] = T[90 ] ^ T[104];
+	assign T[106] = T[82 ] ^ T[84];
+	assign T[107] = T[88 ] ^ T[105];
+	assign T[108] = T[106] ^ T[107];
+	assign C[4  ] = T[108];
+	assign T[109] = T[71 ] ^ T[62];
+	assign T[110] = T[86 ] ^ T[109];
+	assign T[111] = T[110] ^ T[93];
+	assign C[3  ] = T[111];
+	assign T[112] = T[86 ] ^ T[88];
+	assign T[113] = T[89 ] ^ T[112];
+	assign C[2  ] = T[113];
+	assign T[114] = T[57 ] ^ T[32];
+	assign T[115] = T[114] ^ T[88];
+	assign T[116] = T[115] ^ T[93];
+	assign C[1  ] = T[116];
+	assign T[117] = T[93 ] ^ T[1];
+	assign C[0  ] = T[117];
+ 
+ endmodule 
+
